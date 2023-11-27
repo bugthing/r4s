@@ -1,0 +1,27 @@
+services:
+  nginx-proxy:
+    image: jc21/nginx-proxy-manager:latest
+    restart: always
+    ports:
+      - 8880:80/tcp
+      - 8443:443/tcp
+      - 8881:81/tcp
+    environment:
+      DB_SQLITE_FILE: /data/database.sqlite
+    volumes:
+      - /mnt/4TB/home-server/container-volumes/nginx-proxy/data:/data
+      - /mnt/4TB/home-server/container-volumes/nginx-proxy/letsencrypt:/etc/letsencrypt
+      - /mnt/4TB/home-server/container-volumes/nginx-proxy/config:/app/config
+
+  jellyfin:
+    image: jellyfin/jellyfin
+    restart: always
+    ports:
+      - 8096:8096/tcp
+    volumes:
+      - /mnt/4TB/home-server/container-volumes/jellyfin/config":/config
+      - /mnt/4TB/home-server/container-volumes/jellyfin/cache":/cache
+      - /mnt/4TB/Video/Movies:/media/Movies
+      - /mnt/4TB/Video/TV:/media/TV
+      - /mnt/4TB/Video/Kids:/media/Kids
+      - /mnt/4TB/Audio/All/:/media/Music
