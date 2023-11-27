@@ -19,7 +19,7 @@ Get an R4S device running a fresh install of OpenWRT
 
             sudo cfdisk /dev/mmcblk0
 
-2. Prepare some files to connect (copy from prev install.. or skip this an manually configure)
+2. Prepare some files to connect (copy from back or skip this and manually configure)
 
         mkdir ./mnt
         sudo mount /dev/mmcblk0p2 ./mnt/
@@ -38,6 +38,7 @@ Get an R4S device running a fresh install of OpenWRT
             opkg install parted losetup resize2fs
             wget -U "" -O expand-root.sh "https://openwrt.org/_export/code/docs/guide-user/advanced/expand_root?codeblock=0"
             . ./expand-root.sh
+            sh /etc/uci-defaults/70-rootpt-resize
 
 4. Add packages. Additional config
 
